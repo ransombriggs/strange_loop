@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Strange Loop 2012 - Ransom Briggs</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -45,13 +45,205 @@
 				</section>
                 <section>
                     <h2>Themes</h2>
+                    <blockquote>Strange Loop is a multi-disciplinary conference that aims to bring together the developers and thinkers building tomorrow's technology.</blockquote>
                     <ul>
-                        <li>Langauges that transpile to JavaScript</li>
+                        <li>Languages that transpile to JavaScript</li>
                         <li>Functional programming everywhere</li>
-                        <li>Return to ACID data stores</li>
+                        <li>Interesting data stores</li>
+                        <li>Distributed system design</li>
+                        <li>Lots of monad jokes and ribbing of Javascript</li>
                     </ul>
                 </section>
-			</div>
+                <section>
+                    <h2>Why not just write JavaScript?</h2>
+                    <ul>
+                        <li>After writing JavaScript for long enough you avoid things by convention</li>
+                        <li>To write really good javascript takes a lot of boilerplate</li>
+                        <li>JavaScript the Good Parts</li>
+                        <li>"use strict";</li>
+                        <li><a href="http://www.codeproject.com/Articles/182416/A-Collection-of-JavaScript-Gotchas">A Collection of JavaScript Gotchas</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Ack! Forgot the var keyword and leaked into global scope</h2>
+                   	<pre><code contenteditable>
+> f = function() { x = 1; }();
+undefined
+> x
+1
+> g = function() { var y = 2; }();
+undefined
+> y
+ReferenceError: y is not defined
+					</code></pre>
+                    <ul>
+                        <li>Always use var on local methods</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Ack! Equality operator and coercion</h3>
+                   	<pre><code contenteditable>
+> if (0 == '') { console.log("foo"); }
+foo
+                    </code></pre>
+                    <ul>
+                        <li>Always use ===</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><i>this</i> keyword can be confusing <a href="http://book.mixu.net/ch4.html">(source)</a></h3>
+                   	<pre><code contenteditable>
+var obj = {
+    id: "xyz",
+    printId: function() {
+        console.log('The id is '+ this.id + ' '+ this.toString());
+    }
+};
+setTimeout(obj.printId, 100);
+                    </code></pre>
+                    <ul>
+                        <li>setTimeout(function() {obj.printId(), 100})</li>
+                        <li>Be careful about what you use for callbacks</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><i>this</i> keyword can be confusing <a href="http://book.mixu.net/ch4.html">(source)</a></h3>
+                   	<pre><code contenteditable>
+var obj = {
+    items: ["a", "b", "c"],
+    process: function() {
+        var self = this; // assign this to self
+        this.items.forEach(function(item) {
+            // here, use the original value of this!
+            self.print(item);
+        });
+    },
+    print: function(item) {
+        console.log('*' + item + '*');
+    }
+};
+obj.process();
+                    </code></pre>
+                    <ul>
+                        <li>Use libraries (underscore) that let you supply context</li>
+                        <li>Use apply, call or some other framework function like bind</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Alternate Javascript Languages</h2>
+                    <ul>
+                        <li>Languages
+                            <ul>
+                                <li>CoffeeScript</li>
+                                <li>Dart</li>
+                                <li>ClojureScript</li>
+                            </ul>
+                        </li>
+                        <li>Resources
+                            <ul>
+                                <li><a href="http://altjs.org/">altjs.org</a></li>
+                                <li><a href="http://addyosmani.github.com/todomvc/">TodoMVC</a></li>
+                            </ul>
+                        </li>
+                     </ul>
+                </section>
+                <section>
+                    <h2>CoffeeScript</h2>
+                    <ul>
+                        <li>Reads like ruby with significant whitespace</li>
+                        <li>Comes for free with Ruby on Rails</li>
+                        <li>Compiles into readable JavaScript</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Local variables do not pollute the global namespace</h2>
+                   	<pre><code contenteditable>
+f = () ->
+  x = 1; # implicit return
+                    </code></pre>
+                   	<pre><code contenteditable>
+var f;
+
+f = function() {
+  var x;
+  return x = 1;
+};
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Equality operator that makes sense<br/>(just maps == to ===)</h3>
+                   	<pre><code contenteditable>
+if (0 == '')
+  console.log("foo");
+                    </code></pre>
+                   	<pre><code contenteditable>
+if (0 === '') {
+  console.log("foo");
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Instance variables and this binding that makes sense</h3>
+                   	<pre><code contenteditable>
+class Foo
+  constructor: () ->
+    @id = "xyz"
+
+  printId: () => # Must use => instead of ->
+    console.log 'The id is '+ this.id
+
+f = new Foo();
+setTimeout(f.printId, 100);
+                    </code></pre>
+                   	<pre><code contenteditable>
+var Foo, f,
+__bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Foo = (function() {
+
+  function Foo() {
+    this.printId = __bind(this.printId, this); // whoo!
+    this.id = "xyz";
+  }
+
+  Foo.prototype.printId = function() {
+    return console.log('The id is ' + this.id);
+  };
+
+  return Foo;
+
+})();
+
+f = new Foo();
+setTimeout(f.printId, 100);
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Other languages</h3>
+                    <ul>
+                        <li>Dart
+                            <ul>
+                                <li>Reads like Java</li>
+                                <li>Written by same guy who wrote V8 and hotspot</li>
+                            </ul>
+                        </li>
+                        <li>ClojureScript
+                            <ul>
+                                <li>Reads like a LISP variant</li>
+                                <li>Implementation of Clojure</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+ 			</div>
+            <!-- 6
+                <section>
+                    <h2></h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </section>
+            -->
 
 			<!-- The navigational controls UI -->
 			<aside class="controls">

@@ -1,0 +1,54 @@
+# Manage system overload
+
+Scale both up to multicore and out to multiple machines
+
+Program at a higher elvel - never think in terms of shared state and locks
+
+With actors this becomes workflows and how messages flow in the system
+
+They have location transaparency (separation between actor and actor identifier)
+
+# Actor
+
+Akkas are a unit of code organization
+
+What can I use them for?  They look a little like a thread || an instance or component || callback or listener || singleton / service || router load balancer or pool || out of process service || finite state machine
+
+Carl Hewitt http://bit.ly/hewitt-on-actors
+
+Embodies, processing, storage and communication
+
+Actor receives a message, it can create a new actor, send messagers to actors it knows or change its own behavior
+
+Each actor has a protected variable context that it can create actors in.
+
+ActorSystem system = ActorSystem.create("MySystem");
+ActorRef greeter = system.actorOf(new Props(GreetingActor.class), "greeter");
+greeter.tell(new Greeting("Charlie Parker"));
+
+Redefining defines what happens in the reception of the next message.  changing the interface / protocol and implementation.
+
+Take a behavior and push onto the stack.  You might have an Actor that is not highly contended and may switch to another type and doing Router.
+
+Implement a Finite State Machine - receive start, become to running and jump between different states.
+
+Can spawn up empty workers and sending messages based on what you need then revert back to empty after work.
+
+context.become(new Procedure<Object>() {})
+
+Load balancing - can create actor with round robin router and like a pool
+
+Supervise
+
+Manage another actors failures, the guy that creates an actor will be notified when the actor fails.  It is alright if the actor fails, let someone else deal with the problem.
+
+Clean separation of processing and error handling.  Put the thing you cannot lose in the deepest levelo f onion that you cannot use and then layer levels of defense.  
+
+
+
+
+
+
+
+
+

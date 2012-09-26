@@ -1,0 +1,93 @@
+# Why VMs are cool
+
+Platform independent execution
+
+Sandboxing if you run in protected mode
+
+Optimizations can take place at runtime (can inline things at runtime)
+
+Debugging in production
+
+Loading of third party code at runtime
+
+# self
+
+inline caching - capturing the receiver type at a call and saving type informtion
+
+doptimization - take compilation done by compiler and take optimization out
+
+# strongtalk - high performance smalltalk
+
+active compilation but without memory bloat
+
+this ended up in hotspot eventually
+
+# hotspot
+
+interpreter + simple JIT with generational GC
+
+hotspot is still going strong at oracle
+
+conservative collectors hide problems - you do not know where all the pointers are so you treat all integers nad pointers the same.  Bug tail for multithreaded execution is long
+
+# V8 a javascript engine
+
+Map transitions - object is just a map - hard to find common structures
+
+Creates hidden classes behind the scenes, then apply standard optimizations.  Did not create bytecode and have efficient memory management.
+
+Making v8 a seperate project had unexpected consequences.
+
+# Dart 
+
+10x faster startup
+
+Predictable performance, 2x faster
+
+Avoid fragmenting the web
+
+It has curly braces because it works.
+
+single inheritance
+
+interfaces with default implementation
+
+single threaded
+
+optional static types
+
+real lexical scoping
+
+no class initialization
+
+applications are declared
+
+Covariant generic types: List<Apple> is a subtype of List<Fruit>
+
+types are just used to specify intent and can be introduced gradually
+
+can run program in checked mode - T x = o // assert(o == null || o is T)
+
+# What I have learned
+
+Start with a small team in a small room
+
+Focus on the hardest problem first
+
+Competition is great
+
+Only hire people who are smarter than you
+
+Open source is great, helps industry and keeps work honest.
+
+Track performance from day one - run all benchmarks, on all platforms automaticall or performance deterioriates.
+
+Testing must run from day one, execute all tests from day one.
+
+
+
+
+
+
+
+

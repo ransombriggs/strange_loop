@@ -1,0 +1,79 @@
+# Isolation
+
+Erlang VM is designed to isolate processes.
+
+# Fault detection and recovery
+
+Have to be able to detect failure (which can be difficult)  Thread failures are more dubious because there are not exit codes.
+
+Fail fast and avoid defensive failures - make sure you fail quickly and do not mask failures until later.
+
+# Recovery
+
+Things will be failing a lot by design because things are not matching the contracts and assertions.  Shut it down, restart and hope it passes again.
+
+# Separation of concerns
+
+Focus on one thing and do that one thing well.  Make things small, focused and independent.  Making something smaller makes it easier to get your head around the problem.
+
+# Black box design
+
+Treat your components as appliances, keep the interface simple, even though the appliance itself is complicated.  Appliances are easy to setup and use, and you reboot to fix, cycle or replace.
+
+# State management
+
+Erland does not hate state, it just doesn't like it.
+
+# The things about states
+
+Durability  => Recovery
+Replication => Failover
+Corruption  => Repair
+Consistency => Synchronization
+
+# Four stages of state management - punt it
+
+# Avoid complexity & signs
+
+Dependencies
+Nesting / Hierarchies
+Resource Sharing
+Lots of code
+Fear
+
+# Step to step guide
+
+Best friend is the OS process
+No shared memory
+Communicate via message passing
+Process terminate (ie: fault detection)
+
+# Actors
+
+No shared memory
+Queues to process messages
+Interthread communication via queue inserts
+
+# Fail fast
+
+Avoid defensive practices (let exceptions kill the process)
+Let exceptions propegate as far as possible
+Use assertions and leave them in
+Exiting the process is not a bad idea
+
+# Process supervision
+
+Process monitors: runit, launchd
+
+# Think small
+
+Narrowing the scope of an application
+Appliance oriented development
+Micro SOA
+Functional style programming (limit avg function length)
+
+# Invest in simplicity
+
+If it is not obvious, work until it becomes obvious
+
+

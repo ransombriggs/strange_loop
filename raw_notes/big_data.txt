@@ -1,0 +1,64 @@
+# Lack of human fault tolerance 
+
+Bugs can and will be made.  Hope for the best and hope logs have enough information in it.  Need to treat humans as part of the overall system.  Design for human error like any other fault.
+
+The worst thing to happen is data loss or data corruption.
+
+Mutability - the U & D in CRUD
+
+Mutable systems lack human fault tolerance because it is easy to update and delete data.  Standard update, sally moves to new york, to do immutable, you can use effective dated rows.
+
+Immutable systems are more human fault tolerant.  Also become simpler because you have just the C & R in CRUD.
+
+# Conflation of data and queries
+
+Normalization vs denormalization problems.  The way data is modeled, stored and queried is complected.  Either decision you make, sucks, normalized is slow, denormalized adds consistency problems.
+
+# Schemas gone wrong
+
+What do schemas do? function(data unit) => returns if it is valid
+
+Gives structural integrity and prevents corruption (otherwise you eat corruptiong after it happens).  You should get the exception before it corrupts the database. 
+
+# Ideal schema tool
+
+Data is represented as maps, and schema tool should just tweak this map.  (Apache thrift)
+
+http://thrift.apache.org/
+
+# Provocative (relational database will be a footnote)
+
+What does a data system actually do?  A lot of queries we do are actually based on aggregation or transformations.  Query = Function(All data) - sometimes it retrieves what you store but sometimes it does aggregation.  Queries as pure functions over all data.  Typically over all data will be too slow.
+
+Insert some precomutation (indexes) Query = Function(Precomputation(data))
+
+Precomputation could be bucketing by time into hours.  Depends on it being immutable.  Can do this using batch processing with something like MapReduce.  Use a database that does not handle random writes, just from mapreduce.
+
+All data is normalized in the big data, but denormalized and aggregated in the batch view.
+
+# What do we do about views that are out of date?
+
+The batch views are eventually consistent by a view hours.  How do we precompute views for the last few hours of data?
+
+Maintain real time views using stream computation.  When you get stuff from the new data stream you run them through your stream processor and mutate the realtime views in a nosql database.
+
+Now merge batchview and realtime view to do your query.  Calling this a lambda architecture because it is all immutable (except the mutable realtime views)
+
+# Some queries are hard to answer 
+
+Unique count, but you can compute the exact answer in the batch layer but innaccurate in the realtime layer.  
+
+Can swap out everything except All Data, everything else can be recomputed.
+
+https://github.com/nathanmarz/storm
+
+Data storage layer is optimized independently from query resolution layer.
+
+https://github.com/nathanmarz/storm/wiki/Trident-tutorial
+
+
+
+
+
+
+

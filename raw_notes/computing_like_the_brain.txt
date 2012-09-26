@@ -1,0 +1,29 @@
+1. Discover principles of neocortex
+2. Build systems based on these principles
+
+Neocortex is a predictive modeling system
+
+Makes predictions about what happens next
+Detect anomolies
+Generates actions
+
+1. Hierachical system
+2. Sequence memory
+3. Sparse distributed representations
+
+Dense representation (computers)
+  Use all combinations of 1s and 0s and individual bits have no inherant meaning
+
+Sparse distributed representations
+  Many bits
+  Few 1s, but mostly 0s
+  Each bit is learned, not assigned
+
+Sub sampling - just store indicies to some of the bits
+
+Future of Machine Intelligence
+
+numenta.com
+
+On Intelligence
+

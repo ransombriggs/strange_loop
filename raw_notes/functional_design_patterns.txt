@@ -1,0 +1,123 @@
+Pattern Oriented Software Architecture
+
+architecture patterns (above language), design patterns, idioms (in language)
+
+# State / Event Patterns (event sourcing?)
+
+Derived from previous state + input
+
+If you store all inputs, you can recreate all states in the system
+
+(defn update-state [current-state event]
+  ; return new state
+)
+
+(defn end-state [start-state events]
+  (reduce update-state start-state, events) 
+)
+
+# Consequences pattern
+
+Each event can trigger multiple events
+
+(defn consequences [current-state event]
+  ; return sequence of new events
+)
+
+; whoa, recursive rules engine
+(defn apply-consequences [current-state event]
+  (reduce (fn [state event]
+    (recursive-consequences state (update-state state event))
+    ; ...
+
+Consequences do not compose naturally
+
+# Data building patterns
+
+Accumulator Pattern (linear)
+
+(reduce (fn [result input]
+  ; return updated result
+  )
+  initial-result
+  inputs
+)
+
+## MapReduce
+
+Build around slow spinning disks, mapper w/ reducer
+
+## Reduce / Combine Pattern
+
+Input is treelike (rather than reading linearly)
+
+We can solve for subtree and then compbine at the nodes
+
+Easier to parallelize, and requires no intermediate representation since we do not care about order.
+
+## Recursive Expansion Pattern
+
+Keep expanding input until we only have primitives
+
+# Flow Control Patterns
+
+## Pipline Pattern
+
+Process with many discrete steps
+
+; -> is the thrush operator
+; http://stackoverflow.com/questions/4579226/what-does-do-in-clojure
+(-> person
+    (.setFName "Joe")
+    (.setLName "Bob")
+(. (. (. person setFName "Joe") setLName "Bob") setHeight [6 2])
+
+
+(defn large-process [input]
+  ( -> input 
+    subprocess-a
+    subprocess-b
+  )
+) 
+
+# Wrapper Pattern (used in ring, one main path with happy)
+
+(defn wrapper [f]
+  (fn [input]
+    ;; before
+    (f input)
+    ;; after
+  )
+)
+
+(def final-function
+  (-> original-function wrapper-a wrapper-b wrapper-c)
+)
+
+; is this an x, is this a y, is this a z in order
+
+# Token Pattern
+
+(defn begin [target & args]
+  ;; begin operation
+  (fn []
+    ;; cease operation or destory state
+  )
+)
+
+# Observer Pattern
+
+# Strategy Pattern
+
+Swap in different variations of an algorithm, but is really just passing functions
+
+Can use defprotocol to do OOP approach
+
+
+
+
+
+
+
+
+

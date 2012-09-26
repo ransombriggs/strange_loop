@@ -1,0 +1,76 @@
+# Simple beginnings 
+
+web + database server
+
+# Move to non trivial number of users
+
+more webservers and scale up the database w/ indexes
+
+# More growth w/ real traffic
+
+caching
+single database server is not enough # biggest deal so far
+
+database replication gets you reads, but what about writes
+
+# Even more growth
+
+memcached
+CDN for static
+database partitioning beast # oh no
+
+# Whee! more growth panic - stability vs agility
+
+Now no one is working on features because everyone is keeping things alive.
+
+How do you scale to handle the data side of things?
+
+# Datomic
+
+The inevitable pain of sharding is eased.  Datomic splits things out into services that do one simple thing.  Peer runs in your app - the transactor does the writes - storage server.
+
+Datomic separates the reads and writes, because peers can talk directly to the data service and the transactor does the work of writing.
+
+Immutable and remembers everything and is automatic auditing.
+
+Minimal schema - fact oriented - entity attribute value and transaction time
+
+(anya, age, 3, t100)
+
+Need to take these facts and compose them as you see fit.
+
+Transactions are first class, and are ordered and annotated and do queries using them.
+
+First step, send to hash % num_workers
+
+Next step, message queue
+
+Abstract away fault tolerance
+
+Numbus # master in the map reduce sense
+Zookeeper # coordinates the cluster
+Supervisor # tracking each worker
+
+topology - sources of data and actual processing and where it should go.
+
+stream is a list of tuples that comes in
+spout is the output
+bolt is what actually does work
+
+storm has a local mode so that you can do unit testing
+
+storm-deploy - eases AWS deployment 
+
+guaranteed processing
+easy horizontal scalability
+fault tolerance
+
+https://github.com/nathanmarz/storm/wiki/Distributed-RPC
+
+
+
+
+
+
+
+

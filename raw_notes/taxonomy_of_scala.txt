@@ -1,0 +1,114 @@
+# OOP features
+
+// DTO objects done right, w/ equals & hashcode
+case class Person(firstName: String, lastName: String)
+
+# Lazy definitions
+
+lazy val expensiveThing = doExpensiveThing()
+
+# Imports
+
+Can be anywhere so you get localized stuff
+
+# Objects
+
+class Person
+
+object Person // define a singleton 
+  def lookup
+  def factory
+
+# apply method	
+
+# tuples 
+
+Binds you to an implementation - can be used to pass back multiple values
+
+# Pattern matching
+
+name match {
+  case 1 => "one"
+}
+
+# Functional programming
+
+Immutability
+Referential transparency
+
+# Scala collections
+
+# Higher order functions
+
+Methods like map that takes function to use
+
+# For comprehensions
+
+Used for compose higher order functions - 
+
+http://www.scala-lang.org/node/111
+
+# Parallel collections
+
+JSR 166
+
+# Partial Functions 
+
+# Currying
+
+# Actors
+
+# Futures
+
+Handy way to write composable asynchronous code.
+
+# Futures in parallel
+
+# Implicits
+
+Limit the scopes of your implicits!
+
+# Implicit parameters
+
+# Type inferencing
+
+Good idea to show types on your public interfaces.  Specify types when you want type certainty.
+
+# Type classes I
+
+Allow you to layering in varying implementations of behavior without changing an existing inheritance structure.
+
+# Type classes II
+
+Allows you to generalize types that are acceptable for methods.
+
+# Higher kinded types
+
+Do not have a completed type until you pass stuff to constructors
+
+# Macros
+
+Used for generating code at compile time
+
+Use macros for ScalaLogging
+
+Requires recomiple like ifdefs
+
+# Category theory
+
+Concepts and arrows - Concepts are types and arrows are functions that convert one concept to another.
+
+Morphisms change one value in a categotry to another in the same category.
+
+# Functor
+
+Transformations from one to another.
+
+# Monad
+
+Chaining together functors, combining them together.
+
+
+
+
+

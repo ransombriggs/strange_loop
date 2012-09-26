@@ -1,0 +1,121 @@
+# Decrease your unknown unknowns
+
+Coders at work (Brendan Ike)
+
+JavaScript: The Good Parts
+
+# The Type System
+
+Strong vs Weak: Typing of method signatures vs type coercion
+
+typeof(NaN) => "number"
+
+# 5 Simple Types
+
+number (ack! floating point)
+string (no string interpolation)
+boolean
+null (something is explicitly set to null)
+undefined (does variable not exist or exists with no value? [var h;] or a function with no return)
+
+Grab cheatsheet for truthiness (since forgotten)
+
+# All other values are objects
+
+array
+functions
+regex
+
+# Conventions
+
+CONSTANTS
+Contrustors
+otherFunctions
+_private
+
+# Functions
+
+Functions can be passed around and support closures and can even have their own methods.
+
+var add = function(a,b) {
+    return a + b;
+}
+
+add   # returns representation
+add() # parens operator (call representation)
+
+function add(a,b) { return a + b }
+
+add(3,4,5) # just adds three and four, ignores five
+add(3) # return NaN because b is undefined
+
+a = 1;
+function mangleA() { a = 2; }
+mangleA() # ack!
+
+# Objects
+
+peter = {}
+peter.first_initial = "p"
+peter.first_initial # undefined
+peter['first_initial']
+
+book = {'isbn': '1234', 'author': 'Ransom'}
+person = {name: "Joe", greet: function() { console.log("hello") }}
+
+# this scope
+
+Within objects it is what you would expect.  A lot of the time you end up with this scope being the global scope, you usually want this to be the object containing the enclosing method.  (get burned on this in callbacks in the past)
+
+Simple types passed by value, objects by reference.
+
+# Prototypical inheritance
+
+A prototype defines the default properties and functions and it is a dynamic link.  Fallback runs back through the prototype chain until I end up with the object prototype.
+
+var Mammal = {
+  name: 'Mammal',
+  get_name: function() {
+    return this.name;
+  }
+};
+
+var myCat = Object.create(Mammal); // pass the prototype
+
+# Global variables (ack)
+
+Secrets of the Javascript Ninja
+
+# Testing
+
+describe("Jasmine", function() {
+    it("makes testing awesome", function() {
+        var foo = 0;
+        foo++;
+        expect(foo).toEqual(1);
+    });
+});
+
+# Frameworks
+
+jQuery has seem to have won (Rails moved to Rails)
+
+$("a") // get all of the A tags
+$("#orderedList > li") // by class then tags underneath
+
+# MVC
+
+Quick and easy: knockout (MVVM) and angular
+Batman: similar to knockout, but with a developer toolchain
+Spine: opinionated about responsiveness - onDelete spine removes from the view, then goes and asks was it removed.  Good for no server side validation constraints.
+Backbone: most of the time you should use this for work - greatest adoption
+
+# CoffeeScript
+
+Whitespace matters, ruby like syntax.  Errors get nasty when things are too indented and make it harder to debug.  It also makes this better if you pass create the callback with a hashrocket syntax.  
+
+# Brunch
+
+http://brunch.io/ # 
+
+

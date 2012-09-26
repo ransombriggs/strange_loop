@@ -1,0 +1,24 @@
+# Visual Studio
+
+Too complicated
+Too noisy
+But no one vocalized it
+
+The thing that separates programmers is how much of their program they can keep in their head.
+
+They only used Project Explorer, Editor and Debugger
+
+# Time to reimagine it
+
+Needed to learn clojure - not ability to remember entire graph, but the ability to abstract away parts of your program, the ability to traverse abstraction.
+
+We are no longer recipe writers, we consume and create abstractions.  And the best way to consume them is by poking at them by immediately ask questions of the abstraction.
+
+Make a tighter connection to the software you are writing by making a stronger connection to the software you are writing.
+
+Need to be connected to not just the software, but to the running code as well.
+
+A difference between statically typed and dynamic runtime.
+
+
+

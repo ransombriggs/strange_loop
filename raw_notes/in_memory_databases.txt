@@ -1,0 +1,44 @@
+High velocity applications (Transaction Processing (TP))
+
+Memory sizes (w/ cost) are growing faster than database size, so soon your database will fit in memory.
+
+Buffer pool - Managing the cache and getting stuff into memory
+Record level locking - Read / Write locks 
+Recovery - Write ahead log (aries?) - write what it used to look like, what it will look like and flush
+Latching - Concurrency locking
+
+Read "The Innovators Dilemma"
+
+Codicile (sp?) Charlie Bachmann - detailed algorithm instead of what I want
+
+Always want to move program to the data, rather than pulling data down and analyzing in memory.
+
+Eventually consistency - alex buys the last widget, master fails, the slave still thinks there is one.  Now we have sold the same widget twice, and we have -1 widgets.  It became "consistent" but violated the business rules.
+
+Eventual consistent only works if you can change the order of the transactions.
+
+NoSQL if fine for non transactional systems with commits that are commutative.
+
+# Scaling
+
+Must run on a cluster of nodes w/ automatic sharding
+Focus on OLTP with specialized systems
+Use stored procedures for most everything
+
+Main memory - What if it doesn't fit?  So long as distribution is zipf-ian, we can swap out the cold stuff
+
+Write ahead log - Replication and failover and failback.  What if the entire datacenter went out?  Things like periodic checkpointing are much cheaper.  Also store a command log instead of record logs, you can replay the commands rather than the record changes.
+
+Multithreading - don't do it, shard instead.
+
+Record level locking - Run things to completion in timestamp order that they come in.  It is so fast, we should just do it in complete isolation.
+
+Single shard transaction - send transaction to shard controller, where it is put with the other ones and put in order.
+
+"One-shot" multi-shard - trust me, it works.
+
+
+
+
+
+

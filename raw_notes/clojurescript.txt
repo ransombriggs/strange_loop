@@ -1,0 +1,24 @@
+# Visual interfaces
+
+Think of things as a mapping from the state to the visuals
+
+Represent DOM using closure data structures
+
+[:div.turbine-spinner {:class :speed-2 }]
+
+Map abstract data into hiccup representation.
+
+render! ( transform-to-markup (data) )
+
+(bind! '#turbine-spinners'
+  [:div#turbine-spinners
+    (map spinner @turbines)
+  ]
+)
+
+https://github.com/lynaghk/c2
+
+https://github.com/lynaghk/c2-demos/tree/master/todoMVC
+
+Only work in the forward direction.
+

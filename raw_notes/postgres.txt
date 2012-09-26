@@ -1,0 +1,55 @@
+MVCC - multiversion concurrency control - each query sees what is committed before it.  Essentially an appendonly log of your data.
+
+Postgres is flexible - open mindset about datatypes
+
+Developing with postgres, psql is your friend, get to know your \ commands
+
+Can have an array of things like "tags varchar(255)[]" and then insert '{"foo","bar"}'
+
+Extensions: data types that you can enable
+
+HStore - key value pair within a specific column '{"sex" => "M"}' - this is optimized for indexing
+
+9.2 has full json support
+
+Range types like "during tsrange" insert into '[2012-09-24, 2012-09-25)'
+
+Full text search with text data and search predicates.
+
+PostGIS - 2d/3d boxes and relationship operators
+
+# Performance
+
+Sequential scans are bad most of the time
+
+Indexes are good most of the time 
+
+B-Tree is the default and what you usually want
+
+Generalized Inverted Index - use with multiple values in one column, like array or hstore.
+
+Generalized Search Tree - full text search and shapes
+
+Indexes pro tips - create index concurrently - roughly 2-3 times slowly
+
+Conditional indexes - create index where active = 1 - only index data that will actually be queried
+
+rank() over partition by <> order by <>
+
+copy <> to foo.csv
+
+select * from dblink(<other_database>) as f()
+
+Can even connect to redis, twitter, etc
+
+Readability using common table expressions
+
+Listen / notify - pub sub within the database
+
+Per transaction synchronous replication
+
+
+
+
+
+

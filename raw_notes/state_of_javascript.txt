@@ -1,0 +1,68 @@
+# ES6 is coming
+
+Classish stuff
+
+Modules
+
+Symbols
+
+Default parameters
+
+Rest parameters (var args)
+
+Spread (splat)
+
+for (var v of [1,2,3]) {
+  print v;
+}
+
+No default iterator on objects
+
+Promises Purgatory better than Callback Hell
+
+load("config.json").then(function() {}).then(function() {})
+
+Shallow Coroutine Heaven
+
+spawn(function* () { // * specifies generators
+  
+})
+
+Comprehensions
+
+Map && Set
+
+WeakMap
+
+Proxy and __noSuchMethod__
+
+http://altjs.org/
+
+JavaScript will not turn into bytecode
+
+ES6 has proper tail calls
+
+https://github.com/kripken/emscripten/wiki // whoa
+
+Low-level Javascript
+
+http://lljs.org/
+
+Types!
+
+Typed arrays and Typed objects
+
+Macros
+
+http://sweetjs.org/
+
+http://stackoverflow.com/questions/3428136/javascript-integer-math-incorrect-results
+
+http://jsil.org/
+
+http://xmlvm.org/overview/
+
+
+
+
+

@@ -1,0 +1,102 @@
+Separate DOM logic from business logic, whoop whoop.
+
+Backbone now defaults to take client action, then go to server.  Can flip back to wait for server success before doing something.
+
+Why Backbone? (use JQuery for DOM manipulation)
+* RESTful server
+* Templating
+
+Underscore (utility belt)
+
+Building blocks
+
+$(function() {
+    new app.AppView(); // a backbone extended View
+});
+
+# Router
+
+var GalleryRouter = Backbone.Router.extend( {
+    routes: {
+        "about": "showAbout" // name & method
+    }
+
+    showAbout: function() {
+        // do your stuff brother
+    }
+});
+
+window.history.pushState // fix the backbone
+
+# View // not the templating stuff, view model + controller
+
+var PhotoSearch = Backbone.View.extend({
+    el: "#foobar" // this is the DOM element, where do I put my stuff?
+    render: function(event) { // 
+        this.$el.html(<html>);
+        return this; // enables chained calls
+    }
+
+    events: {
+        "submit #foobar": "myEvent"
+    }
+
+    myEvent: function() {
+
+    }
+
+    template: _.template()
+
+};
+
+# Model
+
+var Photo = Backbone.Model.extend({
+    defaults: {
+        src: 'foobar'
+    }
+});
+
+var myPhoto = new Photo({title: "my photo"});
+
+# Collection // provides access to model objects
+
+var PhotoCollection = Backbone.Collection.extend({
+    model: Photo
+});
+
+PhotoCollection.url = '/photos';
+PhotoCollection.fetch();
+
+"use strict";
+
+render: function() {
+    // best practice is to put it in something that is blank so it does not flash
+}
+
+// including fetch, whoop whoop
+window.app.Todos.on( 'all', this.render, this );
+
+use events in the view to set your dom event stuff, and in your intiialize bind your model events to methods you want to call in the view.
+
+this.save({priority: priority}) // why do I have to pass this?
+
+this.attributes
+this.get('priority')
+this.set({priority: 'high'})
+
+// do not use this.priority !
+
+# Thorax 
+
+An opinionated application framework
+
+# Lumbar
+# Brunch
+
+JS-build tool that takes a general codebase and does compilation for you
+
+# Marionette
+
+
+

@@ -1,0 +1,77 @@
+# Project Lambda Function Values in Java
+
+Since Java 2 you could emulate functions by using anonymous classes.
+
+With Java 5 we get Generic with things like Predicate but is very verbose.
+
+lines.removeAll(line -> line.startsWith("#") // vs 5 lines
+
+Aiming to do better with collections and with concurrency
+
+# Lambda Expressions
+
+x -> x + 1
+
+(Integer i) -> list.add(i)
+
+x -> {
+  return x + 1;
+}
+
+# Variable capture
+
+Variables should not be updated from a lambda
+
+# Names in lambdas
+
+In anonymous classes, this is the inner class instance
+
+Lambdas have the same scope as the local this refers to the enclosing class.
+
+# Functional Interface Types in Java
+
+Established pattern are interfaces like Callable<V>
+
+# Target Typing
+
+// System.out.println is a Runnable
+Runnable r = () -> System.out.println("hi");
+
+// s must be a String
+Predicate<String> pred = s -> s.length() < 100;
+
+long[][] arr = {{}};
+
+List<? extends Number> nums = Collections.emptyList();
+
+Set<String> s = new HashSet<>();
+
+new Thread(() -> System.out.println("hi"));
+
+Target typing with method invocations becomes difficult with method overloading.
+
+# Method References
+
+Arrays::asList    // static method
+String::substring // instance method, needs an instance
+Thread.currentThread()::dumpStack // bound reference
+
+# Resolving a method reference
+
+# Default Methods
+
+It is okay to add concrete methods to an API that you have.  It is really bad to add a method to an interface.  You can see this in static classes like Lists because they do not want to change List.
+
+Put code right in the interface, using the default keyword.
+
+Multiple inheritance of behavior, not multiple inheritance of state.  Still a problem when inherting from multiples.  The class always wins on clash, let the class keep it when added.  If method is overridden, prefer that.  Everything else must be @Override in order to compile.
+
+Block<T> // whoop whoop
+
+# Meaning of return in lambda expressions
+
+# Can we have var or val
+
+Maybe someday, but not right now
+
+

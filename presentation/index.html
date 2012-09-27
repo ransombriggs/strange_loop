@@ -136,8 +136,8 @@ obj.process();
                         <li>Languages
                             <ul>
                                 <li>CoffeeScript</li>
-                                <li>Dart</li>
                                 <li>ClojureScript</li>
+                                <li>Dart</li>
                             </ul>
                         </li>
                         <li>Resources
@@ -260,32 +260,40 @@ if(cljs.core._EQ_.call(null,0,"")) {
 }
                     </code></pre>
                 </section>
+                <!-- https://gist.github.com/1098521 -->
                 <section>
-                    <h3>this binding that makes sense</h3>
-                    <pre><!-- https://gist.github.com/1098521 --><code contenteditable>
-                    </code></pre>
+                    <h3>Dart</h3>
+                    <ul>
+                        <li>Reads like Java</li>
+                        <li>Written by same guy who wrote V8 and hotspot</li>
+                        <li>Available as both a VM and dart2js</li>
+                    </ul>
                 </section>
                 <section>
-                    <h3>Other languages</h3>
+                    <h2>Interesting data stores</h2>
                     <ul>
-                        <li>Dart
+                        <li>VoltDB
                             <ul>
-                                <li>Reads like Java</li>
-                                <li>Written by same guy who wrote V8 and hotspot</li>
-                                <li>Available as both a VM and dart2js</li>
+                                <li>Automatic sharding onto separate cores</li>
+                                <li>No row / table locking</li>
+                                <li>No data structure locking</li>
+                                <li>What to do about cross shard queries?</li>
+                            </ul>
+                        </li>
+                <section>
+                    <h2>Interesting data stores</h2>
+                    <ul>
+                        <li>Datomic
+                            <ul>
+                                <li>Transactions as first class citizens</li>
+                                <li>One writer with many readers doing aggressive caching</li>
+                                <li>Data is stored as facts with a reference to transaction</li>
+                                <li>Able to view data at time it was committed</li>
                             </ul>
                         </li>
                     </ul>
                 </section>
  			</div>
-            <!-- 6
-                <section>
-                    <h2></h2>
-                    <ul>
-                        <li></li>
-                    </ul>
-                </section>
-            -->
 
 			<!-- The navigational controls UI -->
 			<aside class="controls">

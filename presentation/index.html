@@ -51,6 +51,7 @@
                         <li>Functional programming everywhere</li>
                         <li>Interesting data stores</li>
                         <li>Distributed system design</li>
+                        <li>Most everything is open source</li>
                         <li>Lots of monad jokes and ribbing of Javascript</li>
                     </ul>
                 </section>
@@ -219,18 +220,59 @@ setTimeout(f.printId, 100);
                     </code></pre>
                 </section>
                 <section>
+                    <h2>ClojureScript</h2>
+                    <ul>
+                        <li>An implementation of Clojure in JavaScript</li>
+                        <li>Reads like a variant of LISP</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Local variables do not pollute the global namespace</h2>
+                    <pre><code contenteditable>
+(defn f []
+  (
+    let [x 1]
+    x   
+  )
+)
+                    </code></pre>
+                    <pre><code contenteditable>
+cljs.user.f = (function f(){
+  var x__5728 = 1;
+  return x__5728;   // implicit return
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Equality operator that makes sense<br/>(just maps == to ===)</h3>
+                    <pre><code contenteditable>
+(if (= 0 "") (println "foo"))
+                    </code></pre>
+                    <pre><code contenteditable>
+/**
+ * _EQ_ does value equality not identity
+ * and === for javascript primitive types
+ */
+if(cljs.core._EQ_.call(null,0,"")) {
+  cljs.core.println.call(null,"foo");
+} else {
+
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>this binding that makes sense</h3>
+                    <pre><!-- https://gist.github.com/1098521 --><code contenteditable>
+                    </code></pre>
+                </section>
+                <section>
                     <h3>Other languages</h3>
                     <ul>
                         <li>Dart
                             <ul>
                                 <li>Reads like Java</li>
                                 <li>Written by same guy who wrote V8 and hotspot</li>
-                            </ul>
-                        </li>
-                        <li>ClojureScript
-                            <ul>
-                                <li>Reads like a LISP variant</li>
-                                <li>Implementation of Clojure</li>
+                                <li>Available as both a VM and dart2js</li>
                             </ul>
                         </li>
                     </ul>

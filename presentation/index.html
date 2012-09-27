@@ -191,7 +191,7 @@ class Foo
     @id = "xyz"
 
   printId: () => # Must use => instead of ->
-    console.log 'The id is '+ this.id
+    console.log 'The id is '+ @id
 
 f = new Foo();
 setTimeout(f.printId, 100);
